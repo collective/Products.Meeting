@@ -1,0 +1,8 @@
+<object name="portal_javascripts" meta_type="JavaScripts Registry">
+
+  <javascript cacheable="True" compression="none" cookable="False"
+              enabled="1" id="smoothscrolling.js"
+              inline="True"/>
+
+</object>
+

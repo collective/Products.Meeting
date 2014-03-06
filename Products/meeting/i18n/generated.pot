@@ -1,0 +1,144 @@
+# archgenxml generated POT File
+# unknown <unknown>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: meeting\n"
+"POT-Creation-Date: Mon Jul 23 02:08:23 2007\n"
+"PO-Revision-Date: Mon Jul 23 02:08:23 2007\n"
+"Last-Translator: unknown <unknown>\n"
+"Language-Team: unknown <unknown>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: meeting\n"
+
+#. Default: "Miscellaneous information on accomodations and visa requirements"
+#: content/Meeting.py
+msgid "Meeting_help_Hotel"
+msgstr ""
+
+#. Default: "Hotel Visa Information"
+#: content/Meeting.py
+msgid "label_hotel_information"
+msgstr ""
+
+#. Default: "Information about accomodation for the meeting"
+#: content/Meeting.py
+msgid "meeting_help_accomodation_information"
+msgstr ""
+
+#. Default: "Documents related to this meeting"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_help_document"
+msgstr ""
+
+#. Default: "unique identifiers for the meeting documents"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_help_document_codes"
+msgstr ""
+
+#. Default: "A Table of documents, including the document code and the link to the document in en,es and fr"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_help_documents"
+msgstr ""
+
+#. Default: "the list of documents for the meeting"
+#: content/Meeting.py
+msgid "meeting_help_list_of_documents"
+msgstr ""
+
+#. Default: "Registration form and information for the meeting"
+#: content/Meeting.py
+msgid "meeting_help_registration"
+msgstr ""
+
+#. Default: "Documents in this collection"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_help_source_documents"
+msgstr ""
+
+#. Default: "The name or title of the meeting"
+#: content/Meeting.py
+#: content/MeetingDocumentCollection.py
+msgid "meeting_help_title"
+msgstr ""
+
+#. Default: "Information on travel and visa requirements"
+#: content/Meeting.py
+msgid "meeting_help_travel_information"
+msgstr ""
+
+#. Default: "Type of Meeting"
+#: content/MeetingDocumentCollection.py
+#: content/MeetingDocument.py
+#: content/Meeting.py
+msgid "meeting_help_type"
+msgstr ""
+
+#. Default: "Accomodation Information"
+#: content/Meeting.py
+msgid "meeting_label_accomodation_information"
+msgstr ""
+
+#. Default: "Country where the event will be held"
+#: content/Meeting.py
+msgid "meeting_label_country"
+msgstr ""
+
+#. Default: "Document"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_label_document"
+msgstr ""
+
+#. Default: "Document Codes"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_label_document_codes"
+msgstr ""
+
+#. Default: "Meeting Documents"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_label_documents"
+msgstr ""
+
+#. Default: "List of Documents"
+#: content/Meeting.py
+msgid "meeting_label_list_of_documents"
+msgstr ""
+
+#. Default: "Location"
+#: content/Meeting.py
+msgid "meeting_label_location"
+msgstr ""
+
+#. Default: "Registration Form"
+#: content/Meeting.py
+msgid "meeting_label_registration"
+msgstr ""
+
+#. Default: "Source Documents"
+#: content/MeetingDocumentCollection.py
+msgid "meeting_label_source_documents"
+msgstr ""
+
+#. Default: "Meeting Name"
+#: content/Meeting.py
+#: content/MeetingDocumentCollection.py
+msgid "meeting_label_title"
+msgstr ""
+
+#. Default: "Travel Information"
+#: content/Meeting.py
+msgid "meeting_label_travel_information"
+msgstr ""
+
+#. Default: "Meeting Type"
+#: content/MeetingDocumentCollection.py
+#: content/MeetingDocument.py
+#: content/Meeting.py
+msgid "meeting_label_type"
+msgstr ""
+

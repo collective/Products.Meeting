@@ -1,0 +1,8 @@
+Paste*
+*.pyc
+*egg-info
+dist
+*.swp
+.swo
+.hg
+.hgtags

@@ -1,0 +1,7 @@
+<metadata>
+  <description>Meeting product</description>
+  <version>100</version>
+  <dependencies>
+    <dependency>profile-upfront.simplereferencefield:default</dependency>
+  </dependencies>
+</metadata>

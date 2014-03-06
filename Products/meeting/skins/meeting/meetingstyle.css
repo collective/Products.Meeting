@@ -1,0 +1,112 @@
+.toplink{text-transform:lowercase;}
+.final-reports a.toplink{color:white;}
+.final-reports a.toplink:visited{color:#ccc;}
+#portlet-meeting ul {
+  list-style-type:none;
+}
+
+#portlet-meeting ul li{
+ font-weight:bold;
+ 
+}
+
+#portlet-meeting ul.submenu {
+   margin-left:15px;
+   list-style-type:disc;
+}
+
+#portlet-meeting ul.submenu li{
+ font-weight:normal;
+ 
+}
+#portlet-meeting dt.portletHeader {
+   background-color:#039;
+   color:white;
+}
+
+#content, #info {
+   margin:15px;
+   padding-top:15px;
+}
+
+#content h2, #content h3, #content p, #content h4 {
+   padding-left:0;
+}
+
+#content h2 {
+   margin:0;
+   padding:0;
+   border:0;
+}
+
+#content h3#meeting_date
+{
+   border-bottom:5px solid #012e4f;  
+   font-weight:normal;
+   padding:0 0 3px 0; margin:0;
+}
+
+#content p.documentDescription {
+  margin-top:5px;
+}
+
+#content h3.heading, dt.Final, #contact h3
+{
+   background-color:#039 !important;
+   color:white;
+   padding:5px !important;
+}
+
+.meeting-docs .doc-title, .meeting-docs .doc-size {
+  display:none;
+}
+
+.meeting-doc-link img{ display:none;}
+
+.meeting-docs table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.meeting-docs td {
+  padding:5px;
+  vertical-align:top;
+}
+
+.meeting-docs td h3 {
+   margin:0;
+}
+.meeting-docs td.doc_code, .meeting-docs td.doc_title {
+  border-top: 1px solid #ccc;
+}
+
+.meeting-docs td.doc_code {
+  width:22%;
+}
+
+dl.collapsible dt.collapsibleHeader {
+  text-transform:capitalize;
+  font-size:110%;
+  padding:5px;
+  width:98.7%;
+}
+
+a.can_edit {
+  font-size:70%;
+  margin-right:12px;
+}
+
+a.can_edit img { display:none; }
+
+h3 a .anchor-link,h4 a .anchor-link, h5 a .anchor-link{color:blue !important;font-size:80% !important;}
+a:visited .anchor-link{color:red !important;font-size:80% !important;}
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
+text-decoration:underline;
+color:#8CACBB !important;;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+color:#dee6ee !important;
+text-decoration:none;
+text-size:70%;
+}
+

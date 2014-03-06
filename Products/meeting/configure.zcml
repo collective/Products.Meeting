@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:five="http://namespaces.zope.org/five">
+
+<!-- <five:traversable class=".content.meeting" />
+-->
+  <include package=".browser" />
+<!--
+  <content class=".content.meeting">
+  <implements
+      interface="contentratings.interfaces.IEditorRatable
+                        zope.app.annotation.interfaces.IAttributeAnnotatable"
+      />
+  </content>
+-->
+<subscriber
+              for="Products.meeting.interfaces.meeting.IMeeting
+                   zope.app.container.interfaces.IObjectAddedEvent"
+              handler="Products.meeting.content.meeting.createMeetingCollectionsAfterCreation"
+              />
+
+</configure>

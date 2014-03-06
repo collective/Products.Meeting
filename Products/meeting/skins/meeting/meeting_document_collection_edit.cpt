@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+  <metal:head define-macro="topslot">
+                <metal:block tal:define="dummy python:request.set('disable_border',1)" />
+  </metal:head>
+  
+  <metal:head define-macro="javascript_head">
+  </metal:head>
+
+  <body>
+        <!-- header, h1 of Edit <Type>, schemata links and webdav lock message -->
+        <metal:header define-macro="header">
+
+        </metal:header>
+        
+        <!-- typedesription, typeDescription from the content type -->
+        <metal:typedescription define-macro="typedescription">
+
+        </metal:typedescription>
+
+        <!-- body, editform , fields, buttons, the default macro 
+             contains a number of slots which usually provide enough
+             ways to customise so often I use that macro and just 
+             fill the slots
+        -->
+        <metal:body define-macro="body">
+                    <metal:decide
+                 tal:define="path python:'/'.join(context.getPhysicalPath());
+ "
+                tal:condition="python:'portal_factory' not in path"
+>
+                   </metal:decide>
+          <fieldset id="bidding-area">
+            <legend>Document Collection</legend>
+            <metal:default_body use-macro="here/lot_edit_macros/macros/body">
+              <!-- inside the fieldset but above all the fields -->
+              <metal:block fill-slot="extra_top">
+                     <p class="discreet">
+           <!--
+                       Enter the total amount you intend to spend and the total quantity you intend to buy. You may purchase a portion of the lot. -->
+                   </p>
+              </metal:block>
+              
+            <!--  <metal:block fill-slot="widgets">
+
+              </metal:block> -->
+
+              <!-- below the fields above the formControls (hidden fields for refernce stuff is above buttons) -->
+              <metal:block fill-slot="extra_bottom">
+              </metal:block>
+
+              <!-- within the formControls these are the default previous, next, save, cancel buttons -->
+              <metal:block fill-slot="xbuttons">
+              </metal:block>
+
+              <!-- within the formControls a slot for extra buttons -->
+              <metal:block fill-slot="extra_buttons">
+              </metal:block>
+
+            </metal:default_body>
+            </fieldset>
+        </metal:body>
+
+        
+        <!-- footer, by line created date etc. -->
+        <metal:footer define-macro="footer">
+        
+        </metal:footer>
+
+  </body>
+
+</html>

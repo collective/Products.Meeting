@@ -1,0 +1,49 @@
+A meeting can be considered an enhanced event. It is able to store:
+
+* Event Data, date time etc..
+* Travel information - Hotel Visa etc..
+* Meeting Documents - Documentation related to the meeting (these are stored in Document Collections)
+* Registration Form - A reference to a registration form can be created
+
+The system is structured around key items:
+
+* A Meeting - this is the hub of the system, it keeps data about the meeting. It acts as a folder
+               to hold the other items
+* A Meeting Document - this can be any typical downloadable document (pdf, doc, odt, ppt, xls etc..)
+              meeting documents can be stored anywhere in the portal, not just in meetings. We recommend that you
+              place them in central folders, but this is absolutely up to your choice of organization.
+* A Meeting Document Collection - This serves to organize your downloadable documents into "collections", A collection can be given a title of your choice (e.g. Working Documents, or  collections can be used to reference meeting documents from anywhere within your portal. Each document in the collection can then be associated with a particular document id and language (spanish, french, english)
+There is a default set of collections that the product creates when a meeting is created, however this can be customized.
+
+Initial Setup
+==============
+The following tasks need to be completed when setting up your meeting system.
+
+* Edit the meeting document collection types, the names in 'meeting_types' dictate what default collections will be created. Go to "{portal}/portal_vocabularies/meeting_types/folder_listing", there is a link for admins in the meeting portlet.
+* Edit the vocabulary for 'meeting_types' and 'document_types' (used to classify meetings and documents when you add them)
+* determine the location or locations where your meeting documents will be stored.
+* setup the country preferences go to "site setup" > "zope management interface" > "portal_countryutils" > "Countries"
+
+Adding a meeting
+==================
+Preparation
+----------------
+Before you add a meeting you can upload all the files and documents related to the meeting to any location within your plone site.
+Meeting Creation
+--------------------
+A meeting is created by adding a name, summary, dates, announcement, contact information and type (e.g. CEP-IGM). 
+When a meeting is created it will automaticaly create 6 meeting document collections, these are 
+* attachments
+* conference papers
+* presentations
+* reference documents
+* information documents
+* working documents
+
+Additionally you will be given options to add Hotel/Visa and Registration information.
+
+Reordering Document Collections
+--------------------------------
+The document collections will displayedin the meeting summary in the same order that they exist in the meeting contents view.
+If you ever need to reorder meeting documents collections go to the `meeting` > `contents` and reorder them as you like. 
+

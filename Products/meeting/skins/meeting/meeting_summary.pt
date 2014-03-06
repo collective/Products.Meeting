@@ -1,0 +1,263 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<div metal:fill-slot="main" tal:define="view context/@@summary;
+                                        country_name view/country_name;
+                                        full_location view/full_location;
+                                        meeting_url context/absolute_url;
+                                        backtotop string:$meeting_url#meeting_top;
+                                       " >
+ <h2><span tal:content="structure context/Title"></span>
+     - <span tal:content="full_location" /></h2>
+
+<!-- meeting details (dates etc...) -->
+<!-- meeting dates -->
+       <h3 id="meeting_date"  tal:condition="context/startDate|nothing">
+                   <tal:block define="
+                                      meetingstart python:context.toLocalizedTime(DateTime.Date(context.startDate),long_format=0);
+                                      meetingend python:context.toLocalizedTime(DateTime.Date(context.endDate),long_format=0);
+                                      spandays python:meetingstart != meetingend"> 
+                        <tal:spandays tal:condition="spandays" 
+                                     tal:define="ampm python:site_properties.getProperty('localLongTimeFormat').find('%p') >= 0">
+                            <span tal:replace="meetingstart">Start Date Time</span> 
+                            <span i18n:translate="event_to">to</span>
+                            <span tal:replace="meetingend" />
+                        </tal:spandays>
+                        <tal:sameday tal:condition="not:spandays" 
+                                     tal:define="ampm python:site_properties.getProperty('localLongTimeFormat').find('%p') >= 0">
+                            <span tal:replace="meetingstart">Start Date Time</span> 
+                            <!--<span tal:replace="python:context.startDate()" />-->
+                        </tal:sameday>
+                  </tal:block>
+       </h3>
+       <tal:nodate tal:condition="not: context/start|nothing">
+        <h3 class="discreet">dates not finalized</h3>
+       </tal:nodate>
+ <!-- meeting description -->
+ <p class="documentDescription" tal:content="context/Description" />
+
+<!-- meeting announcement -->
+ <h3 class="heading" tal:condition="context/getText|nothing">Announcements</h3><a name="announcements"></a>
+ <p tal:content="structure context/getText" />
+
+
+<metal:block tal:define="
+                          can_edit python:checkPermission('Modify portal content', context);
+                          travel_info context/getTravel_visa|nothing;
+                          travel_info_there python:len(travel_info) > 20;
+                          accomodation_info context/getTravel_hotel|nothing;
+                          accomodation_info_there python:len(accomodation_info) > 20;
+                          registration_info context/getRegistration |nothing;
+                          list_of_documents_info context/getList_of_documents|nothing;
+                          collections python:view.meeting_contents(type='MeetingDocumentCollection');">
+<h3 class="heading"
+tal:condition="python:registration_info or accomodation_info_there or travel_info_there"
+>Participant Information</h3><a name="announcements"></a>
+<!-- meeting registration -->
+<metal:noreg tal:condition="not:registration_info">
+
+ <div tal:condition="can_edit" class="portalMessage">
+ <h3>no registration information</h3>
+ <a tal:condition="can_edit" href="base_edit?fieldset=Registration"><img src="add_icon.gif"  />add registration information</a>
+ </div>
+</metal:noreg>
+<metal:registration tal:condition="registration_info">
+ <h3><a name="registration_information"></a>Registration Information
+<a class="anchor-link" 
+ tal:attributes="href backtotop;"
+href="#meeting_top">[top]</a>
+</h3>
+<metal:doclist tal:repeat="document registration_info">
+<tal:definitions tal:define="
+                             icon document/getIcon |nothing;
+                             url document/absolute_url|nothing;
+                             title document/Title|nothing;"
+>
+
+ <a tal:condition="can_edit" href="base_edit?fieldset=Registration"><img src="edit.gif"  />[edit]</a>
+<p class="discreet">details for registering for this event</p>
+ <a href="" tal:attributes="href url">
+ <img src="download_icon.gif" /><img src="" tal:attributes="src icon"/><p tal:omit-tag="" tal:content="title" />
+</a> &nbsp;
+ <a tal:condition="can_edit" href="" tal:attributes="title string:edit ${title};href string:${url}/edit"><img src="edit.gif"  />[edit]</a>
+</tal:definitions>
+</metal:doclist>
+</metal:registration>
+<!-- meeting travel accomodation -->
+<metal:notravel_hotel tal:condition="not:accomodation_info_there">
+
+ <div tal:condition="can_edit" class="portalMessage">
+ <h3>no accomodation information</h3>
+ <a tal:condition="can_edit" href="base_edit?fieldset=Travel%20and%20Accomodation#travel_hotel_help"><img src="add_icon.gif"  />add accomodation information</a>
+ </div>
+</metal:notravel_hotel>
+<metal:travel_hotel tal:condition="accomodation_info_there">
+ <h3><a name="accomodation_information"></a>Accomodation Information
+<a class="anchor-link" 
+ tal:attributes="href backtotop;"
+href="#meeting_top">[top]</a>
+</h3>
+
+ <a tal:condition="can_edit" href="base_edit?fieldset=Travel%20and%20Accomodation#travel_hotel_help"><img src="edit.gif"  />[edit]</a>
+ <p tal:content="structure context/getTravel_hotel" />
+</metal:travel_hotel>
+<!-- meeting travel visa -->
+<metal:novisa tal:condition="not:travel_info_there">
+
+ <div tal:condition="can_edit" class="portalMessage">
+ <h3>no visa information</h3>
+ <a tal:condition="can_edit" href="base_edit?fieldset=Travel%20and%20Accomodation#travel_hotel_help"><img src="add_icon.gif"  />add visa information</a>
+ </div>
+</metal:novisa>
+<metal:visa tal:condition="travel_info_there">
+ <h3><a name="travel_information"></a>Travel Information
+<a class="anchor-link" 
+ tal:attributes="href backtotop;"
+href="#meeting_top">[top]</a>
+</h3>
+
+ <a tal:condition="can_edit" href="base_edit?fieldset=Travel%20and%20Accomodation#travel_visa_help"><img src="edit.gif"  />[edit]</a>
+ <p tal:content="structure context/getTravel_visa" />
+</metal:visa>
+<metal:not-collections tal:condition="not: collections">
+<div class="no-meeting-documents portalMessage" tal:condition="can_edit">   <h3> no meeting documents </h3>
+<a href="createObject?type_name=MeetingDocumentCollection"><img src="add_icon.gif" />add a meeting document collection</a>
+</div>
+</metal:not-collections>
+<metal:collections tal:condition="collections">
+ <h3 class="heading"><a name="meeting_documents"></a>Meeting Documents
+  <a class="anchor-link" 
+ tal:attributes="href backtotop;"
+href="#meeting_top">[top]</a>
+</h3>
+<!-- meeting list of documents -->
+<metal:nolist_of_documents tal:condition="not:list_of_documents_info">
+
+ <div tal:condition="can_edit" class="portalMessage">
+ <h3>no list_of_documents information</h3>
+ <a tal:condition="can_edit" href="base_edit?fieldset=List%20of%20documents"><img src="add_icon.gif"  />add list of documents information</a>
+ </div>
+</metal:nolist_of_documents>
+<metal:list_of_documents tal:condition="list_of_documents_info">
+ <h4><a name="list_of_document_information"></a>List of Meeting Documents</h4>
+
+ <a tal:condition="can_edit" href="base_edit?fieldset=List%20of%20documents"><img src="edit.gif"  />[edit]</a>
+<p class="discreet">list of documents for meeting</p>
+<metal:doclist tal:repeat="document list_of_documents_info">
+<tal:definitions tal:define="icon document/getIcon|nothing;
+                             url document/absolute_url|nothing;
+                             title document/Title|nothing;"
+>
+ <a href="" tal:attributes="href url">
+ <img src="download_icon.gif" /><img src="" tal:attributes="src icon"/><p tal:omit-tag="" tal:content="title" />
+</a>
+&nbsp;
+ <a tal:condition="can_edit" href="" tal:attributes="title string:edit ${title};href string:${url}/edit"><img src="edit.gif"  />[edit]</a>
+ <a tal:condition="nothing" tal:attributes="href string:${url}/delete_confirmation"><img src="delete_icon.gif"  />[delete]</a>
+</tal:definitions>
+<br />
+</metal:doclist>
+</metal:list_of_documents>
+  <div tal:repeat="collection collections">
+    <metal:define tal:define="collection_title collection/Title;
+                              collection_url collection/getId;
+                              meeting_docs collection/getDocuments;
+                              " >
+        <a name="" tal:attributes="name python:collection_title.replace(' ','-')"></a>
+<metal:edit tal:condition="can_edit">
+                  <div class="portalMessage no-meeting-docs" tal:condition="not: meeting_docs">
+                    
+                  <span tal:omit-tag="" tal:content="collection_title"></span>
+                  has no documents 
+        <a tal:condition="can_edit" href="" tal:attributes="href string:$collection_url/edit" ><img src="add_icon.gif" />
+                 add documents</a> </div>
+</metal:edit>
+                  
+        <dl class="collapsible xcollapsedBlockCollapsible"
+                  tal:condition="meeting_docs">
+         <dt class="collapsibleHeader" tal:attributes="class string:$collection_title $collection_url collapsibleHeader">
+        <span tal:omit-tag="" tal:content="collection_title"></span> <a class="toplink" 
+ tal:attributes="href backtotop;"
+href="#meeting_top">[top]</a>
+        <a tal:condition="can_edit" href="" tal:attributes="href string:$collection_url/edit" ><img src="add_icon.gif" />[add/remove]</a>
+        </dt>
+        <dd class="collapsibleContent meeting-docs">
+        <table>
+                <metal:tr tal:repeat="document meeting_docs">
+                 <metal:document
+                       tal:define="doc_code_title document/document;
+                                   doc_code_split python:context.splitonpipe(doc_code_title);
+                                   doc_code doc_code_split/code;
+                                   doc_title doc_code_split/title;
+                                   "
+                           >
+                  <tr>
+                  <td class="doc_code" tal:content="doc_code"></td><td class="doc_title" colspan="3" tal:content="doc_title">this will be the title of the document</td>
+                  </tr>
+                  <tr>
+                  <td></td>
+                    <td>
+                    <metal:block 
+                        tal:repeat="key python:[language for language in document.keys() if language != 'document']"
+                                 >
+		   <tal:definitions tal:define="docid python:document[key];
+                                          query python:{'UID':docid,};
+                                          doc_brain python:context.portal_catalog.searchResults(query);
+                                          "
+                                >
+                  <span class="doc-cell">
+                       <tal:doclink    tal:condition="python:len(doc_brain) > 0">
+                       <tal:definitions define="doc_brain python:doc_brain[0];
+                                                url doc_brain/getURL;
+                                                edit_url string:$url/edit#title;
+                                                icon doc_brain/getIcon;
+                                                size doc_brain/getObjSize;
+                                                description doc_brain/Description;
+                                                title doc_brain/Title;
+                                                title_snip python:title[:14] + '...';
+                                                doc_lang python:{'english':'[English]','spanish':'[Espanol]','french':'[Francais]'}[key];">
+
+                       <a class="meeting-doc-link" href="" 
+                        tal:attributes="href url"><img src="" tal:attributes="src icon" /><span tal:omit-tag="" tal:content="string:$doc_lang">[English]</span></a>
+                          <span class="discreet doc-size" tal:content="size"></span>
+                          <span class="discreet doc-title" tal:attributes="title string:$title - $description" tal:content="title_snip"></span>
+                          <a class="can_edit" tal:condition="can_edit" tal:attributes="href edit_url;title string:edit this document"><img src="edit.gif" />- edit</a>
+                      </tal:definitions>
+                       </tal:doclink>
+                  </span>
+                  </tal:definitions>
+                   </metal:block>
+                   </td>
+                  </tr>
+                </metal:document>
+                </metal:tr>
+         </table>    
+        </dd>
+       </dl>
+
+    </metal:define>
+ </div>
+</metal:collections>
+        <div id="contact">
+        <h3 class="heading">Contact</h3>
+        <a name="contact" class="anchor-link" 
+ tal:attributes="href backtotop;"
+href="#meeting_top">[top]</a>
+        <p id="info">
+          UNEP-CAR/RCU <br />
+          14-20 Port Royal Street <br />
+Kingston, Jamaica <br />
+Tel.: (876) 922-9267-9 <br />
+Fax.: (876) 922-9292 <br />
+Email: rcu@cep.unep.org or cjc@cep.unep.org <br />
+</p>
+        </div>
+    
+</metal:block>
+</div>
+
+</body>
+</html>

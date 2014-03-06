@@ -1,0 +1,26 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:five="http://namespaces.zope.org/five">
+
+
+  <browser:page
+      for="*"
+      name="summary"
+      class=".views.meeting.MeetingSummary"
+      permission="zope.Public"
+      allowed_interface=".interfaces.IMeetingSummary"
+      />
+
+  <browser:page
+      for="*"
+      name="documents"
+      class=".views.meeting.MeetingDocuments"
+      permission="zope.Public"
+      allowed_interface=".interfaces.IMeetingDocuments"
+      />
+<!-- We need to make the request annotatable for this to work -->
+  <class class="ZPublisher.BaseRequest.BaseRequest">
+    <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+  </class>
+
+</configure>

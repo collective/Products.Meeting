@@ -1,0 +1,69 @@
+- [ ] - replace ATVocabularyManager with plone.app.registry
+- [ ] - translate to french and spanish
+- [.] - update schema to remove some fields and add others
+- [.] - refactor schemata
+- [.] - set language independent fields
+- [x] - add default vocabularies for "meeting types"
+- [x] - add default vocabularies for "document types"
+- [x] - double check that all dependencies have been defined
+- [x] - add edit in place shortcuts
+- [x] - get rid of 'document codes' for meeting document collections (not necessary anymore)
+Bugs
+----------
+- [x] - no import export (actions import), fix this (problem in plone3)
+- [x] - change edit to add/remove 
+- [ ] - show only files in context when editing working documents etc
+- [ ] - switch picklist to use a picklist that doesn't "forget" the documents
+
+Custom Views
+-------------------
+- [x] - add custom meeting documents view for meeting type (made this part of the meeting_summary)
+- [x] - add custom meeting summary view for meeting type
+- [x] - do more work on meeting summary view
+- [.] - meeting summary view should hide content that is not "ready" yet
+	- meeting documents should not show when there are no collections
+        - a meeting collection should be hidden if it is empty (done)
+- [x] - make meeting summary view the default for meetings
+- [x] - meeting summary view should use internal anchor tags for quick linking within the page
+- [x] - place meeting date above meeting description in meeting summary view
+- [x] - get rid of related items in meeting documents view and edit
+- [x] - get rid of "discussion" option on meeting document collections
+- [x] - add location to the top of meeting summary view
+      - add the country name to the location
+- [x] - display file size for each meeting document
+- [x] - implement a nice way to get the name of the document (see:http://cep.unep.org/meetings/2006/12th-igm-francais/meeting_documents_view or http://ozone.unep.org/Meeting_Documents/mop/16mop/index.shtml)
+- [ ] - meeting summary view, when used on a meeting document collection,  needs to say the meeting name NOT the title of the meeting collection 
+
+Portlet
+----------
+- [x] - configure the meeting portlet to only show when the item type is a meeting.
+
+Workflow Permissions and Roles
+--------------------------------
+- [x] - figure out appropriate roles (using permissions instead)
+- [ ] - implement a workflow for different meeting states
+
+Make more userfriendly
+------------------------
+- [x] - after filling out the meeting info, a user should be prompted to add documents
+- [ ] - rename after creation has been lost, need to get it working again
+
+Tests
+-------------------
+- [ ] - implement basic tests
+- [ ] - create some more detailed doctests
+
+Easy Customization
+--------------------
+- [ ] - make it easy to customize the meeting portlet
+
+Wishlist
+----------
+- [ ] - allow users to select their documents and download them as a single zip file
+- [ ] - if the sign up sheet product is installed then offer the possibility of a sign up sheet
+- [ ] - integrated GoogleMaps (can be done in the travel info section)
+- [ ] - a nice photo (can be done in the travel info section)
+- [x] - define a collection types vocabulary which automatically defines a set of meeting document collections
+- [ ] - a way to override the default meeting document collection types, in a more granular, section by section way
+- [ ] - use SchemaEditorNG so that a user can specify other document languages (currently hardcoded for english, spanish and french)
+

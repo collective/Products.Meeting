@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      i18n:domain="meeting">
+
+<body>
+
+  <metal:block define-macro="meetingMenu"
+               tal:define="isMeeting python:here.portal_type == 'Meeting';
+                          can_edit python:checkPermission('Modify portal content', context);
+                          "
+               tal:condition="isMeeting">
+
+
+      <ul>
+        <li>
+          <dl class="actionMenu" id="meetingMenu">
+            <dt class="actionMenuHeader">
+                <a href="#"
+                   tal:condition="can_edit"
+                   ><span i18n:translate="label_manage_meeting_document_collection_types">Manage Meeting Settings</span></a>
+            </dt>
+            <dd class="actionMenuContent">
+              <ul>
+                  <li> 
+                    <a href="#"
+                       tal:attributes="href string:$portal_url/portal_vocabularies/meeting_types/folder_listing">
+                      <img alt=""
+                           tal:attributes="src string:${portal_url}/document.gif;
+                             "
+                           />manage meeting types
+                    </a>
+                  </li>
+                  <li> 
+                    <a href="#"
+                       tal:attributes="href string:$portal_url/portal_vocabularies/document_types/folder_listing">
+                      <img alt=""
+                           tal:attributes="src string:${portal_url}/document.gif;
+                             "
+                           />manage document collection types
+                    </a>
+                  </li>
+              </ul>
+            </dd>
+          </dl>
+        </li>
+      </ul>
+
+  </metal:block>
+</body>
+</html>

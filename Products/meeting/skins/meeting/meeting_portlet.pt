@@ -1,0 +1,102 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+  <body>
+
+    <div tal:condition="python:context.Type() == 'Meeting'"
+        metal:define-macro="portlet" tal:omit-tag="">
+      <!--<dl tal:condition="python:container.Type() == 'Meeting' or container.aq_parent.Type() == 'Meeting'" id="portlet-meeting_portlet">
+    -->
+      <tal:definitions define="
+                          view context/@@summary;
+                          meeting_url context/absolute_url;
+                          travel_info context/getTravel_visa |nothing;
+                          announcement context/getText |nothing;
+                          registration_info context/getRegistration |nothing;
+                         accommodation_info context/getTravel_hotel |nothing;
+                         list_of_docs context/getList_of_documents|nothing;
+                         photos context/getPhotos|nothing;
+                         collections_with_docs  view/collections_with_docs;
+                        "
+                     >
+      <a name="meeting_top" />
+      <dl id="portlet-meeting" class="portlet">
+        <dt class="portletHeader">
+          <span class="portletTopLeft" tal:content="string:Navigation"></span>
+          <!-- <span i18n:translate="box_meeting_links">meeting links</span> -->
+          <span class="portletTopRight"></span>
+        </dt>
+        <dd class="portletItem lastItem">
+        <ul>
+          <li tal:condition="announcement"><a href="#announcements" 
+                      tal:attributes="href string:$meeting_url#announcements"
+>Announcements</a></li>
+          <li tal:condition="python:registration_info or accommodation_info or travel_info"><a 
+                      tal:attributes="href string:$meeting_url#participant-information"
+href="#participant-information">Participant Information</a></li>
+          <ul class="submenu">
+          <li tal:condition="registration_info"><a 
+                      tal:attributes="href string:$meeting_url#registration_information"
+href="#registration_information"> Registration Information</a></li>
+          <li tal:condition="accommodation_info"><a 
+                      tal:attributes="href string:$meeting_url#accommodation_information"
+href="#accomodation_information">Accomodation Information</a></li>
+          <li tal:condition="travel_info"><a 
+                      tal:attributes="href string:$meeting_url#travel_information"
+href="#travel_information">Travel Information</a></li>
+          </ul>
+          <li><a 
+                      tal:attributes="href string:$meeting_url#meeting_documents"
+href="#meeting_documents"> Meeting Documents</a></li>
+           <ul class="submenu">
+           <li tal:condition="list_of_docs"><a 
+                      tal:attributes="href string:$meeting_url#list_of_document_information"
+href="#list_of_document_information">List of Meeting Documents</a></li>
+           <li tal:condition="python:'working-documents' in collections_with_docs"><a 
+                      tal:attributes="href string:$meeting_url#working-documents"
+href="#working-documents">Working Documents</a></li>
+           <li tal:condition="python:'information-documents' in collections_with_docs"><a 
+                      tal:attributes="href string:$meeting_url#information-documents"
+href="#information-documents">Information Documents</a></li>
+           <li tal:condition="python:'conference-papers' in collections_with_docs"><a 
+                      tal:attributes="href string:$meeting_url#conference-papers"
+href="#conference-papers">Conference Papers</a></li>
+           <li tal:condition="python:'reference-documents' in collections_with_docs"><a 
+                      tal:attributes="href string:$meeting_url#reference-documents"
+href="#reference-documents">Reference Documents</a></li>
+           </ul>
+        
+       <li tal:condition="python:'final-reports' in collections_with_docs"><a 
+                      tal:attributes="href string:$meeting_url#final-reports"
+href="#final-reports">Final Report</a></li>
+       <li tal:condition="photos"><a href="#photos">Photos</a></li>
+       <li><a href="#contact">Contact</a></li>
+       </ul>
+          <span class="portletBottomLeft"></span>
+          <span class="portletBottomRight"></span>
+        </dd>
+        <dd tal:condition="nothing" class="portletItem even lastItem">
+          <ul>
+        <strong>Meeting Settings</strong>
+            <li>
+              <a href="" tal:attributes="
+                           href string:${portal_url}/portal_vocabularies/meeting_types/folder_listing;"
+>Configure default meeting types</a>
+
+            </li>
+            <li>
+              <a href="" tal:attributes="
+                           href string:${portal_url}/portal_vocabularies/document_types/folder_listing;"
+>Configure default document types</a>
+
+            </li>
+         </ul>
+        </dd>
+      </dl>
+
+
+     </tal:definitions>
+    </div>
+  </body>
+
+</html>
